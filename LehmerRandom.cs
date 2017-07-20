@@ -1,7 +1,7 @@
 ﻿/// <summary>
 /// https://en.wikipedia.org/wiki/Lehmer_random_number_generator
 /// </summary>
-internal class LehmerRandom : IRandom
+internal class LehmerRandom
 {
 	private const int g = 16807; //7^5
 	private const int n = 2147483647; //2^31 − 1
