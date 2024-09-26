@@ -3,8 +3,8 @@
 /// </summary>
 internal class LehmerRandom
 {
-	private const int g = 16807; //7^5
-	private const int n = 2147483647; //2^31 − 1
+	private const int _g = 16807; //7^5
+	private const int _n = 2147483647; //2^31 − 1
 	private int _seed;
 
 	public LehmerRandom(int seed)
@@ -12,10 +12,10 @@ internal class LehmerRandom
 		SetSeed(seed);
 	}
 
-	private int next()
+	private int _next()
 	{
 		//cast to long to prevent overflow
-		long result = ((long)_seed * g) % n;
+		long result = ((long)_seed * _g) % _n;
 
 		_seed = (int)result;
 
@@ -31,17 +31,21 @@ internal class LehmerRandom
 	public int Next(int minValue, int maxValue)
 	{
 		if (minValue > maxValue)
+		{
 			throw new ArgumentOutOfRangeException();
+		}
 
 		int range = maxValue - minValue;
 
-		return (next() % range) + minValue;
+		return (_next() % range) + minValue;
 	}
 
 	public void SetSeed(int seed)
 	{
 		if (seed == 0)
+		{
 			seed = 1;
+		}
 
 		_seed = seed;
 	}
